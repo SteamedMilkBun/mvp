@@ -20,6 +20,8 @@
 
 ## Set up server app
 ### Set up server
-* port
-* route
-* listener
+* port = process.env.DATABASE_URL
+* routes to perform CRUD operations on Render database
+* listener for process.env.PORT
+
+

@@ -40,6 +40,13 @@ app.get("/person", (req, res) => {
   })
 });
 
+app.get("/person/:name", (req, res) => {
+  const name = JSON.stringify(req.params.name);
+  console.log(`Queried ${req.body.name}, stringified: ${name}`);
+
+  
+})
+
 app.get("/baked_goods", (req, res) => {
   client.query("SELECT * FROM baked_goods")
   .then((data) => {
