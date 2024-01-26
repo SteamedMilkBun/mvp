@@ -20,6 +20,7 @@ app.get("/bakery", (req, res) => {
   console.log(`get request to route /bakery`);
   client.query("SELECT * FROM bakery")
   .then((data) => {
+    console.log(data.rows);
     res.json(data.rows);
   })
   .catch((err) => {
@@ -27,6 +28,8 @@ app.get("/bakery", (req, res) => {
     res.sendStatus(500);
   })
 });
+
+app.get("/bakery")
 
 app.listen(process.env.PORT, () => {
   console.log(`Server listening on port: ${process.env.PORT}.`);
