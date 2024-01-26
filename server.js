@@ -42,9 +42,22 @@ app.get("/person", (req, res) => {
 
 app.get("/person/:name", (req, res) => {
   const name = JSON.stringify(req.params.name);
-  console.log(`Queried ${req.body.name}, stringified: ${name}`);
+  console.log(`Queried ${req.params.name}, stringified: ${name}`);
 
-  
+  client.query(`SELECT * FROM person WHERE person_name = $1`, [name])
+  .then((data) => {
+    if (data.rows.length === 0) {
+      console.log(`No matches for: ${name}.`)
+      res.sendStatus(400);
+      return;
+    }
+    console.log(data.rows[0]);
+    res.json(data.rows[0]);
+  })
+  .catch((err) => {
+    console.log(err);
+    res.sendStatus(500);
+  })
 })
 
 app.get("/baked_goods", (req, res) => {
