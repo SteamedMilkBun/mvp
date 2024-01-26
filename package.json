@@ -1,6 +1,7 @@
 {
   "name": "mvp",
   "version": "1.0.0",
+  "type": "module",
   "description": "Deploy database to Render and have basic front end ",
   "main": "server.js",
   "scripts": {

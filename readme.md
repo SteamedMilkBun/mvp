@@ -13,6 +13,11 @@
 * seed Render database using sql files
 * check Render database logs to confirm that the desired data from PostgreSQL Docker container was correctly seeded
 
+### Set up web service for database
+* create and connect Render web service to Github repo
+* use npm install and npm start for build and start commands, respectively
+* in 'environment', add variable 'DATABASE_URL' and set to 'Internal Database URL', which can be found in Render database info
+
 ## Set up server app
 ### Set up server
 * port
