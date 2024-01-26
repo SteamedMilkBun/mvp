@@ -76,7 +76,7 @@ app.get("/baked_goods/:id", (req, res) => {
   const id = Number.parseInt(req.params.id);
   console.log(`Queried ${id}`);
 
-  client.query(`SELECT * FROM baked_goods WHERE baked_goods_name = $1`, [id])
+  client.query(`SELECT * FROM baked_goods WHERE baked_goods_id = $1`, [id])
   .then((data) => {
     if (data.rows.length === 0) {
       console.log(`No matches for: ${id}.`)
