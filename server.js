@@ -72,6 +72,26 @@ app.get("/baked_goods", (req, res) => {
   })
 });
 
+app.get("/baked_goods/:id", (req, res) => {
+  const id = Number.parseInt(req.params.id);
+  console.log(`Queried ${id}`);
+
+  client.query(`SELECT * FROM baked_goods WHERE baked_goods_name = $1`, [id])
+  .then((data) => {
+    if (data.rows.length === 0) {
+      console.log(`No matches for: ${id}.`)
+      res.sendStatus(400);
+      return;
+    }
+    console.log(data.rows[0]);
+    res.json(data.rows[0]);
+  })
+  .catch((err) => {
+    console.log(err);
+    res.sendStatus(500);
+  })
+})
+
 app.listen(process.env.PORT, () => {
   console.log(`Server listening on port: ${process.env.PORT}.`);
 });
