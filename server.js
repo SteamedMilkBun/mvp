@@ -44,7 +44,7 @@ app.get("/person/:name", (req, res) => {
   const name = JSON.stringify(req.params.name);
   console.log(`Queried ${req.params.name}, stringified: ${name}`);
 
-  client.query(`SELECT * FROM person WHERE person_name = $1`, [name])
+  client.query(`SELECT * FROM person WHERE person_name = $1`, [req.params.name])
   .then((data) => {
     if (data.rows.length === 0) {
       console.log(`No matches for: ${name}.`)
