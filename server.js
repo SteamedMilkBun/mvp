@@ -17,7 +17,6 @@ await client.connect();
 app.use(express.static("public"));
 
 app.get("/bakery", (req, res) => {
-  console.log(`get request to route /bakery`);
   client.query("SELECT * FROM bakery")
   .then((data) => {
     console.log(data.rows);
@@ -29,7 +28,29 @@ app.get("/bakery", (req, res) => {
   })
 });
 
-app.get("/bakery")
+app.get("/person", (req, res) => {
+  client.query("SELECT * FROM person")
+  .then((data) => {
+    console.log(data.rows);
+    res.json(data.rows);
+  })
+  .catch((err) => {
+    console.log(err);
+    res.sendStatus(500);
+  })
+});
+
+app.get("/baked_goods", (req, res) => {
+  client.query("SELECT * FROM baked_goods")
+  .then((data) => {
+    console.log(data.rows);
+    res.json(data.rows);
+  })
+  .catch((err) => {
+    console.log(err);
+    res.sendStatus(500);
+  })
+});
 
 app.listen(process.env.PORT, () => {
   console.log(`Server listening on port: ${process.env.PORT}.`);
