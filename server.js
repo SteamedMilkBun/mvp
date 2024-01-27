@@ -68,7 +68,7 @@ app.post("/person/:name", (req, res) => {
   //TODO capitalize first letter in name to be posted
   //TODO check if valid name
 
-  console.log(`Request to post typeof name: ${typeof req.params.name}, name: ${name}, money: ${money}`);
+  console.log(`Want to post name: ${name}, money: ${money}`);
 
   client.query(`INSERT INTO person (person_name, person_money) VALUES ($1, $2) RETURNING *`, [name, money])
   .then((data) => {
@@ -110,6 +110,27 @@ app.get("/baked_goods/:id", (req, res) => {
   .catch((err) => {
     console.log(err);
     res.sendStatus(500);
+  })
+})
+
+app.post("/baked_goods/:id", (req, res) => {
+  const id = Number.parseInt(req.params.id);
+  const name = req.body.baked_goods_name;
+  const price = Number.parseInt(req.body.baked_goods_price);
+
+  //TODO capitalize first letter in name to be posted
+  //TODO check if valid name
+
+  console.log(`Want to post name: ${name}, price: ${price}`);
+
+  client.query(`INSERT INTO baked_goods (baked_goods_name, baked_goods_price) VALUES ($1, $2) RETURNING *`, [name, price])
+  .then((data) => {
+    console.log(data.rows[0]);
+    res.json(data.rows[0]);
+  })
+  .catch((err) => {
+    console.log(err);
+    return;
   })
 })
 
