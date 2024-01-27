@@ -66,11 +66,15 @@ app.post("/person/:name", (req, res) => {
   const money = Number.parseInt(req.body.person_money);
 
   //TODO capitalize first letter in name to be posted
+  if(typeof name !== 'string') {
+    console.log(`${name} is not a string, it is a ${typeof name}.`);
+    return;
+  }
 
   console.log(`Request to post typeof name: ${typeof req.params.name}, name: ${name}, money: ${money}`);
 
   client.query(`INSERT INTO person (person_name, person_money)
-                VALUE $1, $2`, [name, money])
+                VALUES $1, $2`, [name, money])
   .then((data) => {
     console.log(data.rows[0]);
     res.json(data.rows[0]);
