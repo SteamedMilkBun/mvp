@@ -66,12 +66,7 @@ app.post("/person/:name", (req, res) => {
   const money = Number.parseInt(req.body.person_money);
 
   //TODO capitalize first letter in name to be posted
-
-  //if Number(:name) is a number, reject
-  if(!Number.isNaN(Number(name))) {
-    console.log(`${name} is not a string, it is a ${typeof name}.`);
-    return;
-  }
+  //TODO check if valid name
 
   console.log(`Request to post typeof name: ${typeof req.params.name}, name: ${name}, money: ${money}`);
 
