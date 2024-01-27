@@ -82,6 +82,31 @@ app.post("/person", (req, res) => {
   })
 })
 
+app.patch("/person/:name", (req, res) => {
+  const name = req.params.name;
+  const money = req.body.person_money;
+  console.log(`Want to patch/update something about ${req.params.name}`);
+
+  client.query(`UPDATE person SET 
+                person_money = COALESCE($1, person_money)
+                WHERE person_name ILIKE $2`, [price, name])
+  .then((data) => {
+    if (data.rows.length === 0) {
+      console.log(`No matches for: ${name}.`)
+      res.sendStatus(400);
+      return;
+    }
+
+    //TODO more than one person with same name
+    console.log(data.rows[0]);
+    res.json(data.rows[0]);
+  })
+  .catch((err) => {
+    console.log(err);
+    res.sendStatus(500);
+  }) 
+})
+
 app.delete("/person/:name", (req, res) => {
   const name = req.params.name;
   console.log(`Want to delete: ${req.params.name}`);
@@ -118,7 +143,7 @@ app.get("/baked_goods/:id", (req, res) => {
   client.query(`SELECT * FROM baked_goods WHERE baked_goods_id = $1`, [id])
   .then((data) => {
     if (data.rows.length === 0) {
-      console.log(`No matches for: ${id}.`)
+      console.log(`No matches for id: ${id}.`)
       res.sendStatus(400);
       return;
     }
