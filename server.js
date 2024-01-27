@@ -80,6 +80,26 @@ app.post("/person", (req, res) => {
   })
 })
 
+app.delete("/person/:name", (req, res) => {
+  const name = req.params.name;
+  console.log(`Want to delete: ${req.params.name}`);
+
+  client.query(`DELETE FROM person WHERE person_name ILIKE $1`, [name])
+  .then((data) => {
+    if (data.rows.length === 0) {
+      console.log(`No matches for: ${name} to delete.`)
+      res.sendStatus(400);
+      return;
+    }
+    console.log(data.rows[0]);
+    res.json(data.rows[0]);
+  })
+  .catch((err) => {
+    console.log(err);
+    res.sendStatus(500);
+  })
+})
+
 app.get("/baked_goods", (req, res) => {
   client.query("SELECT * FROM baked_goods")
   .then((data) => {
