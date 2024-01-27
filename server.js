@@ -86,7 +86,7 @@ app.delete("/person/:name", (req, res) => {
 
   client.query(`DELETE FROM person WHERE person_name ILIKE $1`, [name])
   .then((data) => {
-    if(data.rows[0] === 'undefined') {
+    if(!data.rows[0]) {
       console.log(`Nothing to delete at ${name}`);
       res.sendStatus(404);
       return;
