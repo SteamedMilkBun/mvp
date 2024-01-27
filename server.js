@@ -51,6 +51,8 @@ app.get("/person/:name", (req, res) => {
       res.sendStatus(400);
       return;
     }
+
+    //TODO more than one person with same name
     console.log(data.rows[0]);
     res.json(data.rows[0]);
   })
@@ -86,11 +88,7 @@ app.delete("/person/:name", (req, res) => {
 
   client.query(`DELETE FROM person WHERE person_name ILIKE $1`, [name])
   .then((data) => {
-    if(!data.rows[0]) {
-      console.log(`Nothing to delete at ${name}`);
-      res.sendStatus(404);
-      return;
-    }
+    //TODO what happens when what you want to delete doesn't exist?
     console.log(`Deleted ${name}`);
     console.log(data.rows[0]);
     res.json(data.rows[0]);
@@ -148,6 +146,23 @@ app.post("/baked_goods", (req, res) => {
   .catch((err) => {
     console.log(err);
     return;
+  })
+})
+
+app.delete("/baked_goods/:id", (req, res) => {
+  const id = Number.parseInt(req.params.id);
+  console.log(`Want to delete baked goods at id: ${id}`);
+
+  client.query(`DELETE FROM person WHERE person_name ILIKE $1`, [id])
+  .then((data) => {
+    //TODO what happens when what you want to delete doesn't exist?
+    console.log(`Deleted ${id}`);
+    console.log(data.rows[0]);
+    res.json(data.rows[0]);
+  })
+  .catch((err) => {
+    console.log(err);
+    res.sendStatus(500);
   })
 })
 
