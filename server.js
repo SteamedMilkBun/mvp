@@ -75,8 +75,8 @@ app.post("/person/:name", (req, res) => {
 
   client.query(`INSERT INTO person (person_name, person_money) VALUES ($1, $2)`, [name, money])
   .then((data) => {
-    console.log(data.rows[0]);
-    res.json(data.rows[0]);
+    console.log(data.rows);
+    res.json(data.rows);
   })
   .catch((err) => {
     console.log(err);
