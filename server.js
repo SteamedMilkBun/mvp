@@ -174,6 +174,33 @@ app.post("/baked_goods", (req, res) => {
   })
 })
 
+app.patch("/baked_goods/:id", (req, res) => {
+  const id = Number.parseInt(req.params.id);
+  const name = req.body.baked_goods_name;
+  const price = req.body.baked_goods_price;
+
+  console.log(`Want to patch/update something about ${id}`);
+
+  client.query(`UPDATE baked_goods SET 
+                baked_goods_name = COALESCE($1, baked_goods_name),
+                baked_goods_price = COALESCE($2, baked_goods_price)
+                WHERE baked_goods_id = $3 RETURNING *`, [name, price, id])
+  .then((data) => {
+    if (data.rows.length === 0) {
+      console.log(`No matches for id: ${id}.`)
+      res.sendStatus(400);
+      return;
+    }
+
+    console.log(data.rows[0]);
+    res.json(data.rows[0]);
+  })
+  .catch((err) => {
+    console.log(err);
+    res.sendStatus(500);
+  }) 
+})
+
 app.delete("/baked_goods/:id", (req, res) => {
   const id = Number.parseInt(req.params.id);
   console.log(`Want to delete baked goods at id: ${id}`);
