@@ -60,6 +60,16 @@ app.get("/person/:name", (req, res) => {
   })
 })
 
+app.post("/person/:name", (req, res) => {
+  //const id = req.params.id;
+  const name = req.params.name;
+  const money = Number.parseInt(req.body.person_money);
+
+  console.log(`Request to post typeof name: ${typeof req.params.name}, name: ${name}, money: ${money}`);
+  res.end;
+  return;
+})
+
 app.get("/baked_goods", (req, res) => {
   client.query("SELECT * FROM baked_goods")
   .then((data) => {
