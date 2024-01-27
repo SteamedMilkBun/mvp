@@ -65,9 +65,20 @@ app.post("/person/:name", (req, res) => {
   const name = req.params.name;
   const money = Number.parseInt(req.body.person_money);
 
+  //TODO capitalize first letter in name to be posted
+
   console.log(`Request to post typeof name: ${typeof req.params.name}, name: ${name}, money: ${money}`);
-  res.end;
-  return;
+
+  client.query(`INSERT INTO person (person_name, person_money)
+                VALUE $1, $2`, [name, money])
+  .then((data) => {
+    console.log(data.rows[0]);
+    res.json(data.rows[0]);
+  })
+  .catch((err) => {
+    console.log(err);
+    return;
+  })
 })
 
 app.get("/baked_goods", (req, res) => {
