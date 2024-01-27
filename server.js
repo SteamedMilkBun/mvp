@@ -89,7 +89,7 @@ app.patch("/person/:name", (req, res) => {
 
   client.query(`UPDATE person SET 
                 person_money = COALESCE($1, person_money)
-                WHERE person_name ILIKE $2`, [money, name])
+                WHERE person_name ILIKE $2 RETURING *`, [money, name])
   .then((data) => {
     if (data.rows.length === 0) {
       console.log(`No matches for: ${name}.`)
