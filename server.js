@@ -153,7 +153,7 @@ app.delete("/baked_goods/:id", (req, res) => {
   const id = Number.parseInt(req.params.id);
   console.log(`Want to delete baked goods at id: ${id}`);
 
-  client.query(`DELETE FROM person WHERE person_name ILIKE $1`, [id])
+  client.query(`DELETE FROM baked_goods WHERE baked_goods_id = $1`, [id])
   .then((data) => {
     //TODO what happens when what you want to delete doesn't exist?
     console.log(`Deleted ${id}`);
