@@ -86,6 +86,7 @@ app.delete("/person/:name", (req, res) => {
 
   client.query(`DELETE FROM person WHERE person_name ILIKE $1`, [name])
   .then((data) => {
+    console.log(`Deleted ${name}`);
     console.log(data.rows[0]);
     res.json(data.rows[0]);
   })
