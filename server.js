@@ -60,9 +60,8 @@ app.get("/person/:name", (req, res) => {
   })
 })
 
-app.post("/person/:name", (req, res) => {
-  //const id = req.params.id;
-  const name = req.params.name;
+app.post("/person", (req, res) => {
+  const name = req.body.person_name;
   const money = Number.parseInt(req.body.person_money);
 
   //TODO capitalize first letter in name to be posted
@@ -113,13 +112,10 @@ app.get("/baked_goods/:id", (req, res) => {
   })
 })
 
-app.post("/baked_goods/:id", (req, res) => {
-  const id = Number.parseInt(req.params.id);
+app.post("/baked_goods", (req, res) => {
   const name = req.body.baked_goods_name;
   const price = Number.parseInt(req.body.baked_goods_price);
 
-  //TODO capitalize first letter in name to be posted
-  //TODO check if valid name
 
   console.log(`Want to post name: ${name}, price: ${price}`);
 
