@@ -1,0 +1,16 @@
+.container {
+    display: block;
+    height: auto;
+    width: auto;
+    border-style: solid;
+    border-color: black;
+}
+
+.clickable {
+    display: block;
+    height: 15px;
+    width: 100px;
+    border-style: solid;
+    border-color: black;
+    background-color: aqua
+}

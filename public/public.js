@@ -1,14 +1,67 @@
+const createPeopleContainer = function () {
+    const $peopleContainer = $('<div>This is the peopleContainer</div>')
+    $peopleContainer.addClass("container");
+
+    const $clickable = $('<div>Show All</div>');
+    $clickable.addClass("clickable");
+    $clickable.on('click', () => {
+        console.log("clicked the div");
+        let resultArr = getTable();
+        console.log(resultArr);
+        return resultArr;
+    });
+
+    $("body").append($peopleContainer);
+    $("body").append($clickable);
+}
+
+const createBakedGoodsContainer = function () {
+    const $bakedGoodsContainer = $('<div>This is the bakedGoodsContainer</div>')
+    $bakedGoodsContainer.addClass("container");
+
+    const $clickable = $('<div>Show All</div>')
+    $clickable.addClass("clickable");
+    $clickable.on('click', () => {
+        console.log("clicked the div");
+        let resultArr = getTable();
+        console.log(resultArr);
+        return resultArr;
+    });
+
+    $("body").append($bakedGoodsContainer);
+    $("body").append($clickable);
+}
+
 //show all people in person table
-let showPersonTable = function () {
+const showPeople = function () {
     //create personDiv container to append later
-    const $personDiv = $('<div></div>');
-    $personDiv.append('<p>p in personDiv</p>');
+    const $personDiv = $('<div></div>').addClass("container");
+    $personDiv.append('<p>iterate to show each person</p>');
     //append #personDiv to people container
     $("body").append($personDiv);
 }
-//start by selecting personDiv class to manipulate the div
-
 
 //show all baked goods in baked_goods table
+const showBakedGoods = function () {
+    const $bgDiv = $('<div></div>').addClass("container");
+    $bgDiv.append('<p>iterate to show each baked good</p>');
+    $("body").append($bgDiv);
+}
 
-showPersonTable();
+const getTable = function (/*get request to person or baked_goods table*/) {
+    let exampleArr = [{a:1}, {b:2}];
+    return exampleArr;
+}
+
+createPeopleContainer();
+createBakedGoodsContainer();
+showPeople();
+showBakedGoods();
+
+fetch("/person")
+.then((result) => {
+    return result.json()
+})
+.then((data) => {
+    console.log(data);
+})
