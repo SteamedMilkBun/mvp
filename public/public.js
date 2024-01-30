@@ -5,10 +5,18 @@ const createPeopleContainer = function () {
     const $clickable = $('<div>Show All</div>');
     $clickable.addClass("clickable");
     $clickable.on('click', () => {
-        console.log("clicked the div");
-        let resultArr = getTable();
-        console.log(resultArr);
-        return resultArr;
+        fetch("person")
+        .then((fetchResult) => {
+            //turn fetchResult from string into json
+            return fetchResult.json();
+        })
+        .then((jsonData) => {
+            console.log(jsonData)
+        })
+        .catch((err) => {
+            console.log(err);
+            res.sendStatus(500); 
+        })
     });
 
     $("body").append($peopleContainer);
@@ -48,11 +56,6 @@ const showBakedGoods = function () {
     $("body").append($bgDiv);
 }
 
-const getTable = function (/*get request to person or baked_goods table*/) {
-    let exampleArr = [{a:1}, {b:2}];
-    return exampleArr;
-}
-
 createPeopleContainer();
 createBakedGoodsContainer();
 showPeople();
@@ -65,3 +68,4 @@ fetch("/person")
 .then((data) => {
     console.log(data);
 })
+
