@@ -11,11 +11,10 @@ const createPeopleContainer = function () {
             return fetchResult.json();
         })
         .then((jsonData) => {
-            console.log(`return jsonData`);
-            console.log(jsonData);
-            return jsonData;
+            console.log(`pass jsonData into showPeople`);
+            showPeople(jsonData);
+            console.log("f: showPeople finished")
         })
-        .then(showPeople(jsonData))
         .catch((err) => {
             console.log(err);
             res.sendStatus(500); 
@@ -63,8 +62,6 @@ const showBakedGoods = function () {
 
 createPeopleContainer();
 createBakedGoodsContainer();
-showPeople();
-showBakedGoods();
 
 // fetch("/person")
 // .then((result) => {
