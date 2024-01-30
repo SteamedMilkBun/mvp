@@ -61,11 +61,11 @@ createBakedGoodsContainer();
 showPeople();
 showBakedGoods();
 
-fetch("/person")
-.then((result) => {
-    return result.json()
-})
-.then((data) => {
-    console.log(data);
-})
+// fetch("/person")
+// .then((result) => {
+//     return result.json()
+// })
+// .then((data) => {
+//     console.log(data);
+// })
 
