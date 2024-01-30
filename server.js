@@ -3,17 +3,22 @@ import pg from 'pg';
 import dotenv from 'dotenv';
 dotenv.config();
 
-const app = express();
-
-app.use(express.json());
-
-const client = new pg.Client({
-    // TODO: Replace "postgres://localhost/example_db" with process.env.DATABASE_URL
-    connectionString: process.env.DATABASE_URL
+const pool = new pg.Pool({
+  // TODO: Replace "postgres://localhost/example_db" with process.env.DATABASE_URL
+  connectionString: process.env.DATABASE_URL
 });
-  
-await client.connect();
 
+pool.connect()
+.then((client) => {
+  console.log(`Connected to postgres using connection string ${process.env.DATABASE_URL}`);
+  client.release();
+})
+.catch((err)=>{
+  console.log("Failed to connect to postgres: ", err.message);
+})
+
+const app = express();
+app.use(express.json());
 app.use(express.static("public"));
 
 app.get("/bakery", (req, res) => {
