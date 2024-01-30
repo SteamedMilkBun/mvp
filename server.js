@@ -34,7 +34,7 @@ app.get("/bakery", (req, res) => {
 });
 
 app.get("/person", (req, res) => {
-  client.query("SELECT * FROM person")
+  pool.query("SELECT * FROM person")
   .then((data) => {
     console.log(data.rows);
     res.json(data.rows);
@@ -49,7 +49,7 @@ app.get("/person/:name", (req, res) => {
   const name = req.params.name;
   console.log(`Queried ${req.params.name}`);
 
-  client.query(`SELECT * FROM person WHERE person_name ILIKE $1`, [name])
+  pool.query(`SELECT * FROM person WHERE person_name ILIKE $1`, [name])
   .then((data) => {
     if (data.rows.length === 0) {
       console.log(`No matches for: ${name}.`)
@@ -76,7 +76,7 @@ app.post("/person", (req, res) => {
 
   console.log(`Want to post name: ${name}, money: ${money}`);
 
-  client.query(`INSERT INTO person (person_name, person_money) VALUES ($1, $2) RETURNING *`, [name, money])
+  pool.query(`INSERT INTO person (person_name, person_money) VALUES ($1, $2) RETURNING *`, [name, money])
   .then((data) => {
     console.log(data.rows[0]);
     res.json(data.rows[0]);
@@ -92,7 +92,7 @@ app.patch("/person/:name", (req, res) => {
   const money = req.body.person_money;
   console.log(`Want to patch/update something about ${req.params.name}`);
 
-  client.query(`UPDATE person SET 
+  pool.query(`UPDATE person SET 
                 person_money = COALESCE($1, person_money)
                 WHERE person_name ILIKE $2 RETURNING *`, [money, name])
   .then((data) => {
@@ -116,7 +116,7 @@ app.delete("/person/:name", (req, res) => {
   const name = req.params.name;
   console.log(`Want to delete: ${req.params.name}`);
 
-  client.query(`DELETE FROM person WHERE person_name ILIKE $1`, [name])
+  pool.query(`DELETE FROM person WHERE person_name ILIKE $1`, [name])
   .then((data) => {
     //TODO what happens when what you want to delete doesn't exist?
     console.log(`Deleted ${name}`);
@@ -130,7 +130,7 @@ app.delete("/person/:name", (req, res) => {
 })
 
 app.get("/baked_goods", (req, res) => {
-  client.query("SELECT * FROM baked_goods")
+  pool.query("SELECT * FROM baked_goods")
   .then((data) => {
     console.log(data.rows);
     res.json(data.rows);
@@ -145,7 +145,7 @@ app.get("/baked_goods/:id", (req, res) => {
   const id = Number.parseInt(req.params.id);
   console.log(`Queried ${id}`);
 
-  client.query(`SELECT * FROM baked_goods WHERE baked_goods_id = $1`, [id])
+  pool.query(`SELECT * FROM baked_goods WHERE baked_goods_id = $1`, [id])
   .then((data) => {
     if (data.rows.length === 0) {
       console.log(`No matches for id: ${id}.`)
@@ -168,7 +168,7 @@ app.post("/baked_goods", (req, res) => {
 
   console.log(`Want to post name: ${name}, price: ${price}`);
 
-  client.query(`INSERT INTO baked_goods (baked_goods_name, baked_goods_price) VALUES ($1, $2) RETURNING *`, [name, price])
+  pool.query(`INSERT INTO baked_goods (baked_goods_name, baked_goods_price) VALUES ($1, $2) RETURNING *`, [name, price])
   .then((data) => {
     console.log(data.rows[0]);
     res.json(data.rows[0]);
@@ -186,7 +186,7 @@ app.patch("/baked_goods/:id", (req, res) => {
 
   console.log(`Want to patch/update something about ${id}`);
 
-  client.query(`UPDATE baked_goods SET 
+  pool.query(`UPDATE baked_goods SET 
                 baked_goods_name = COALESCE($1, baked_goods_name),
                 baked_goods_price = COALESCE($2, baked_goods_price)
                 WHERE baked_goods_id = $3 RETURNING *`, [name, price, id])
@@ -210,7 +210,7 @@ app.delete("/baked_goods/:id", (req, res) => {
   const id = Number.parseInt(req.params.id);
   console.log(`Want to delete baked goods at id: ${id}`);
 
-  client.query(`DELETE FROM baked_goods WHERE baked_goods_id = $1`, [id])
+  pool.query(`DELETE FROM baked_goods WHERE baked_goods_id = $1`, [id])
   .then((data) => {
     //TODO what happens when what you want to delete doesn't exist?
     console.log(`Deleted ${id}`);
