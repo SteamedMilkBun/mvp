@@ -43,14 +43,18 @@ const createBakedGoodsContainer = function () {
 }
 
 //show all people in person table
-const showPeople = function (jsonData) {
+const showPeople = function (people) {
     console.log(`inside f:showPeople`)
-    console.log(jsonData);
-    // //create personDiv container to append later
-    // const $personDiv = $('<div></div>').addClass("container");
-    // $personDiv.append('<p>iterate to show each person</p>');
-    // //append #personDiv to people container
-    // $("body").append($personDiv);
+    console.log(people);
+
+    for (let person of people) {
+        //create personDiv container to append later
+        const $personDiv = $(`<div>${person}</div>`).addClass("container");
+
+        $personDiv.append('<p>iterate to show each person</p>');
+    }
+    //append #personDiv to people container
+    $("body").append($personDiv);
 }
 
 //show all baked goods in baked_goods table
@@ -62,12 +66,4 @@ const showBakedGoods = function () {
 
 createPeopleContainer();
 createBakedGoodsContainer();
-
-// fetch("/person")
-// .then((result) => {
-//     return result.json()
-// })
-// .then((data) => {
-//     console.log(data);
-// })
 
