@@ -54,7 +54,7 @@ const showPeople = function (people) {
     for (let person of people) {
         //create personDiv container to append later
         const $personDiv = $(`<div>${person.person_name}</div>`);
-        $personDiv.addClass(`${person.person_name}`);
+        $personDiv.addClass(`person-container ${person.person_name}`);
         $(".people-container").append($personDiv);
         console.log('append person container')
     }
