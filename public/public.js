@@ -58,8 +58,8 @@ const showPeople = function (people) {
         
         $(".people-container").append($personDiv);
         console.log('append person container')
-        showPerson();
     }
+    showPerson();
 }
 
 const showPerson = function () {
