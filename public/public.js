@@ -57,7 +57,6 @@ const showPeople = function (people) {
         $personDiv.addClass("person-container");
         $(".person-container").on('click', (event) => {
             const target = event.target;
-            console.log(target);
             showPerson(target);
         })
         $(".people-container").append($personDiv);
@@ -67,7 +66,7 @@ const showPeople = function (people) {
 
 const showPerson = function (target) {
     console.log('f: showPerson');
-    console.log(target)
+    console.log(target.text());
     const pCont = $(".person-container");
 }
 
