@@ -1,4 +1,12 @@
-.container {
+.table-container {
+    display: block;
+    height: auto;
+    width: auto;
+    border-style: solid;
+    border-color: black;
+}
+
+.bg-container {
     display: block;
     height: auto;
     width: auto;

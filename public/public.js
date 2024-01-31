@@ -1,6 +1,6 @@
 const createPeopleContainer = function () {
     const $peopleContainer = $('<div></div>')
-    $peopleContainer.addClass("container");
+    $peopleContainer.addClass("people-container");
 
     const $clickable = $('<div>Show All People</div>');
     $clickable.addClass("clickable");
@@ -24,7 +24,7 @@ const createPeopleContainer = function () {
 
 const createBakedGoodsContainer = function () {
     const $bakedGoodsContainer = $('<div>This is the bakedGoodsContainer</div>')
-    $bakedGoodsContainer.addClass("container");
+    $bakedGoodsContainer.addClass("bg-ontainer");
 
     const $clickable = $('<div>Show All Baked Goods</div>')
     $clickable.addClass("clickable");
@@ -48,7 +48,7 @@ const createBakedGoodsContainer = function () {
 
 //show all people in person table
 const showPeople = function (people) {
-    $peopleContainer.empty();
+    $(".people-container").empty();
     for (let person of people) {
         //create personDiv container to append later
         const $personDiv = $(`<div>${person.person_name}</div>`);
@@ -60,7 +60,7 @@ const showPeople = function (people) {
 
 //show all baked goods in baked_goods table
 const showBakedGoods = function (baked_goods) {
-    $bakedGoodsContainer.empty();
+    $(".bg-container").empty();
     for (let baked_good of baked_goods) {
         const $bgDiv = $(`<div>${baked_good.baked_goods_name}: ${baked_good.baked_goods_price} copper</div>`);
         $bgDiv.addClass("container");
