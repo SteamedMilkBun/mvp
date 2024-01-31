@@ -79,7 +79,6 @@ const showPerson = function () {
             res.sendStatus(500);
         })
     })
-    //const pCont = $(".person-container");
 }
 
 //show all baked goods in baked_goods table
