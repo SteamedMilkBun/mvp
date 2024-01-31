@@ -47,16 +47,12 @@ const createBakedGoodsContainer = function () {
     $("body").append($clickable);
 }
 
-//show all people in person table
 const showPeople = function (people) {
-    console.log('empty people container')
     $(".people-container").empty();
     for (let person of people) {
-        //create personDiv container to append later
         const $personDiv = $(`<div>${person.person_name}</div>`);
         $personDiv.addClass(`person-container ${person.person_name}`);
         $(".people-container").append($personDiv);
-        console.log('append person container')
     }
     showPerson();
 }
@@ -81,15 +77,12 @@ const showPerson = function () {
     })
 }
 
-//show all baked goods in baked_goods table
 const showBakedGoods = function (baked_goods) {
-    console.log("clear bg container")
     $(".bg-container").empty();
     for (let baked_good of baked_goods) {
         const $bgDiv = $(`<div>${baked_good.baked_goods_name}: ${baked_good.baked_goods_price} copper</div>`);
         $bgDiv.addClass("item-container");
         $(".bg-container").append($bgDiv);
-        console.log("appended bg container");
     }
 }
 
