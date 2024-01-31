@@ -5,7 +5,7 @@ const createPeopleContainer = function () {
     const $clickable = $('<div>Show All People</div>');
     $clickable.addClass("clickable");
     $clickable.on('click', () => {
-        $(".people-container").remove();
+        
         fetch("person")
         .then((fetchResult) => {
             return fetchResult.json();
@@ -25,7 +25,7 @@ const createPeopleContainer = function () {
 
 const createBakedGoodsContainer = function () {
     const $bakedGoodsContainer = $('<div></div>')
-    $(".bg-container").addClass("bg-container");
+    
 
     const $clickable = $('<div>Show All Baked Goods</div>')
     $clickable.addClass("clickable");
@@ -50,7 +50,7 @@ const createBakedGoodsContainer = function () {
 
 //show all people in person table
 const showPeople = function (people) {
-
+    $(".people-container").remove();
     for (let person of people) {
         //create personDiv container to append later
         const $personDiv = $(`<div>${person.person_name}</div>`);
@@ -62,7 +62,7 @@ const showPeople = function (people) {
 
 //show all baked goods in baked_goods table
 const showBakedGoods = function (baked_goods) {
-
+    $(".bg-container").addClass("bg-container");
     for (let baked_good of baked_goods) {
         const $bgDiv = $(`<div>${baked_good.baked_goods_name}: ${baked_good.baked_goods_price} copper</div>`);
         $bgDiv.addClass("container");
