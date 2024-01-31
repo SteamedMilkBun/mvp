@@ -54,9 +54,6 @@ const createBakedGoodsContainer = function () {
 
 //show all people in person table
 const showPeople = function (people) {
-    console.log(`inside f:showPeople`)
-    console.log(people);
-
     for (let person of people) {
         //create personDiv container to append later
         const $personDiv = $(`<div>${person.person_name}</div>`);
@@ -68,10 +65,7 @@ const showPeople = function (people) {
 
 //show all baked goods in baked_goods table
 const showBakedGoods = function (baked_goods) {
-    console.log(`inside f:showbg`)
-    console.log(baked_goods);
-
-    for (let baked_good of bake_goods) {
+    for (let baked_good of baked_goods) {
         const $bgDiv = $(`<div>${baked_good.baked_goods_name}: ${baked_good.baked_goods_price} copper</div>`);
         $bgDiv.addClass("container");
         $("body").append($bgDiv);
