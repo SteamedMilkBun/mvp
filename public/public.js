@@ -72,7 +72,8 @@ const showPerson = function () {
             return result.json();
         })
         .then((personData) => {
-            console.log(personData)
+            $moneyDiv = $(`<div>Copper: ${personData.person_money}</div>`)
+            $.person-container.append($moneyDiv); 
         })
         .catch((err) => {
             console.log(err);
