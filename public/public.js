@@ -87,7 +87,7 @@ const showBakedGoods = function (baked_goods) {
     $(".bg-container").empty();
     for (let baked_good of baked_goods) {
         const $bgDiv = $(`<div>${baked_good.baked_goods_name}: ${baked_good.baked_goods_price} copper</div>`);
-        $bgDiv.addClass("container");
+        $bgDiv.addClass("item-container");
         $(".bg-container").append($bgDiv);
         console.log("appended bg container");
     }

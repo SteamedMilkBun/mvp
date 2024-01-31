@@ -22,6 +22,14 @@
     border-color: black;
 }
 
+.item-container {
+    display: block;
+    height: auto;
+    width: auto;
+    border-style: dotted;
+    border-color: rgb(204, 145, 17);
+}
+
 .clickable {
     display: block;
     height: 15px;
