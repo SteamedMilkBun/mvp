@@ -54,8 +54,7 @@ const showPeople = function (people) {
     for (let person of people) {
         //create personDiv container to append later
         const $personDiv = $(`<div>${person.person_name}</div>`);
-        $personDiv.addClass("person-container");
-        
+        $personDiv.addClass(`${person.person_name}`);
         $(".people-container").append($personDiv);
         console.log('append person container')
     }
@@ -73,7 +72,7 @@ const showPerson = function () {
         })
         .then((personData) => {
             $moneyDiv = $(`<div>Copper: ${personData.person_money}</div>`)
-            $('.person-container').append($moneyDiv); 
+            $(`${personData.person_name}`).append($moneyDiv); 
         })
         .catch((err) => {
             console.log(err);
