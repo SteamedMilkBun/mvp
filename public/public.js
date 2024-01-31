@@ -59,6 +59,7 @@ const showPeople = function (people) {
             const target = event.target;
             console.log(target);
             showPerson(target);
+        })
         $(".people-container").append($personDiv);
         console.log('append person container')
     }
