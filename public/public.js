@@ -1,6 +1,7 @@
 const createPeopleContainer = function () {
     const $peopleContainer = $('<div></div>')
     $peopleContainer.addClass("people-container");
+    $("body").append($peopleContainer);
 
     const $clickable = $('<div>Show All People</div>');
     $clickable.addClass("clickable");
@@ -19,7 +20,6 @@ const createPeopleContainer = function () {
         })
     });
 
-    $("body").append($peopleContainer);
     $("body").append($clickable);
 }
 
@@ -49,13 +49,14 @@ const createBakedGoodsContainer = function () {
 
 //show all people in person table
 const showPeople = function (people) {
+    console.log('empty people container')
     $(".people-container").empty();
     for (let person of people) {
         //create personDiv container to append later
         const $personDiv = $(`<div>${person.person_name}</div>`);
         $personDiv.addClass("container");
-        //append #personDiv to people container
-        $(".person-container").append($personDiv);
+        $(".people-container").append($personDiv);
+        console.log('append person container')
     }
 }
 
