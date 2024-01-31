@@ -66,8 +66,8 @@ const showPeople = function (people) {
 
 const showPerson = function (target) {
     console.log('f: showPerson');
-    console.log(target.text());
-    const pCont = $(".person-container");
+    console.log(target.textContent);
+    //const pCont = $(".person-container");
 }
 
 //show all baked goods in baked_goods table
