@@ -62,11 +62,13 @@ const showPeople = function (people) {
 
 //show all baked goods in baked_goods table
 const showBakedGoods = function (baked_goods) {
+    console.log("clear bg container")
     $(".bg-container").empty();
     for (let baked_good of baked_goods) {
         const $bgDiv = $(`<div>${baked_good.baked_goods_name}: ${baked_good.baked_goods_price} copper</div>`);
         $bgDiv.addClass("container");
         $(".bg-container").append($bgDiv);
+        console.log("appended bg container");
     }
 }
 
