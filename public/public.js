@@ -26,6 +26,7 @@ const createPeopleContainer = function () {
 const createBakedGoodsContainer = function () {
     const $bakedGoodsContainer = $('<div></div>')
     $bakedGoodsContainer.addClass("bg-container");
+    $("body").append($bakedGoodsContainer);
 
     const $clickable = $('<div>Show All Baked Goods</div>')
     $clickable.addClass("clickable");
@@ -44,7 +45,6 @@ const createBakedGoodsContainer = function () {
         })
     });
 
-    $("body").append($bakedGoodsContainer);
     $("body").append($clickable);
 }
 
