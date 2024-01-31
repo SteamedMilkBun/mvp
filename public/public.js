@@ -65,7 +65,6 @@ const showPerson = function () {
     console.log('f: showPerson');
     $(".person-container").on('click', (event) => {
         const name = event.target.textContent;
-        console.log(name);
         fetch(`person/${name}`)
         .then((result) => {
             return result.json();
@@ -73,7 +72,7 @@ const showPerson = function () {
         .then((personData) => {
             $moneyDiv = $(`<div>Copper: ${personData.person_money}</div>`);
             console.log(`${personData.person_name}`);
-            $(`${personData.person_name}`).append($moneyDiv); 
+            $(`.${personData.person_name}`).append($moneyDiv); 
         })
         .catch((err) => {
             console.log(err);
