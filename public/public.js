@@ -67,6 +67,17 @@ const showPerson = function () {
     $(".person-container").on('click', (event) => {
         const name = event.target.textContent;
         console.log(name);
+        fetch(`person/${name}`)
+        .then((result) => {
+            return result.json();
+        })
+        .then((personData) => {
+            console.log(personData)
+        })
+        .catch((err) => {
+            console.log(err);
+            res.sendStatus(500);
+        })
     })
     //const pCont = $(".person-container");
 }
