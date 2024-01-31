@@ -31,7 +31,6 @@ const createBakedGoodsContainer = function () {
     const $clickable = $('<div>Show All Baked Goods</div>')
     $clickable.addClass("clickable");
     $clickable.on('click', () => {
-        $bakedGoodsContainer.remove();
         fetch("baked_goods")
         .then((fetchResult) => {
             return fetchResult.json();
