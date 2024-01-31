@@ -6,6 +6,14 @@
     border-color: black;
 }
 
+.person-container {
+    display: block;
+    height: auto;
+    width: auto;
+    border-style: dotted;
+    border-color: rgb(13, 119, 190);
+}
+
 .bg-container {
     display: block;
     height: auto;

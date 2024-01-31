@@ -54,10 +54,21 @@ const showPeople = function (people) {
     for (let person of people) {
         //create personDiv container to append later
         const $personDiv = $(`<div>${person.person_name}</div>`);
-        $personDiv.addClass("container");
+        $personDiv.addClass("person-container");
         $(".people-container").append($personDiv);
         console.log('append person container')
     }
+}
+
+const showPerson = function (name) {
+    console.log('f: showPerson');
+    const pCont = $(".person-container");
+    pCont.empty();
+    pCont.on('click', (event) => {
+        const target = event.target;
+        console.log(clickTarget);
+    })
+
 }
 
 //show all baked goods in baked_goods table
