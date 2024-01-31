@@ -5,7 +5,7 @@ const createPeopleContainer = function () {
     const $clickable = $('<div>Show All People</div>');
     $clickable.addClass("clickable");
     $clickable.on('click', () => {
-        $(".people-container").remove();
+        $peopleContainer.remove();
         fetch("person")
         .then((fetchResult) => {
             return fetchResult.json();
@@ -30,7 +30,7 @@ const createBakedGoodsContainer = function () {
     const $clickable = $('<div>Show All Baked Goods</div>')
     $clickable.addClass("clickable");
     $clickable.on('click', () => {
-        $(".bg-container").remove();
+        $bakedGoodsContainer.remove();
         fetch("baked_goods")
         .then((fetchResult) => {
             return fetchResult.json();
