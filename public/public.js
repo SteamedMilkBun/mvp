@@ -51,10 +51,9 @@ const showPeople = function (people) {
         //create personDiv container to append later
         const $personDiv = $(`<div>${person}</div>`);
         $personDiv.addClass("container");
-        $personDiv.append('<p>iterate to show each person</p>');
+        //append #personDiv to people container
+        $("body").append($personDiv);
     }
-    //append #personDiv to people container
-    $("body").append($personDiv);
 }
 
 //show all baked goods in baked_goods table
