@@ -55,18 +55,19 @@ const showPeople = function (people) {
         //create personDiv container to append later
         const $personDiv = $(`<div>${person.person_name}</div>`);
         $personDiv.addClass("person-container");
-        $(".person-container").on('click', (event) => {
-            const target = event.target;
-            showPerson(target);
-        })
+        
         $(".people-container").append($personDiv);
         console.log('append person container')
+        showPerson();
     }
 }
 
-const showPerson = function (target) {
+const showPerson = function () {
     console.log('f: showPerson');
-    console.log(target.textContent);
+    $(".person-container").on('click', (event) => {
+        const name = event.target.textContent;
+        console.log(name);
+    })
     //const pCont = $(".person-container");
 }
 
